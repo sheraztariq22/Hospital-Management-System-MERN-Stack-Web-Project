@@ -1,0 +1,21 @@
+.navLinks {
+  background-color: #222338;
+  color: white;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 1rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.navLink {
+  list-style-type: none;
+  cursor: pointer;
+}
+.activeNvaLink {
+  text-decoration: underline;
+  color: #16b0e9;
+  list-style-type: none;
+  cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.btn-style {
+  width: 90%;
+  height: 3rem;
+  background: linear-gradient(to right, rgb(102, 154, 172), #46aa72);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: white;
+}
