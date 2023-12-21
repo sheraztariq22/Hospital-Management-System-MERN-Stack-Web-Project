@@ -1,0 +1,31 @@
+.padDivSty {
+  padding: 2rem;
+}
+.delList {
+  display: flex;
+  flex-wrap: inherit;
+  color: white;
+  list-style-type: none;
+  justify-content: space-between;
+  height: 3rem;
+}
+.listData {
+  color: white;
+  display: flex;
+  flex-wrap: inherit;
+  gap: 10px;
+  list-style-type: none;
+  justify-content: space-between;
+  align-items: last baseline;
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+.detailsBtn {
+  background: none;
+  color: #15bffd;
+  border: none;
+}
+.deleteBtn {
+  background: transparent;
+  border: none;
+}

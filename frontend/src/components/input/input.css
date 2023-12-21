@@ -1,0 +1,10 @@
+#inputOne,
+#inputTwo {
+  padding: 25px 35px;
+  margin: 10px;
+  width: 24rem;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid;
+  border-color: #858586;
+}
