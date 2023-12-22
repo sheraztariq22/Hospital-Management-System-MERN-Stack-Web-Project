@@ -1,0 +1,12 @@
+.bg-image-div {
+  background-image: url("../../assets/loginImgs/desktop-bg.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  align-items: center;
+}

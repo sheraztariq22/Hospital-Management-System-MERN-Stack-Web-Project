@@ -1,0 +1,80 @@
+.login-div {
+  background-color: white;
+  height: 98vh;
+  width: 32rem;
+  grid-column: 5/6;
+  display: grid;
+  /* gap: 10px; */
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  text-align: center;
+}
+.title-login p {
+  text-align: center;
+  color: #009d92;
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+.orStyle {
+  text-align: center;
+}
+.logo-imgs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.logoAll {
+  /* width: 2.4rem; */
+  /* height: 2.4rem; */
+  border-radius: 10px;
+  text-align: center;
+  padding: 8px 12px;
+  background-color: rgba(220, 220, 220, 0.438);
+}
+.forgotPass {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.checkboxStyle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.checkboxStyle label {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.856);
+}
+
+.recoverPass p {
+  font-weight: bold;
+  color: #009d92;
+}
+.accountLinks {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 500;
+}
+.accountLinks a {
+  text-decoration: none;
+}
+.newAccount {
+  color: rgba(0, 0, 0, 0.788);
+}
+.signup {
+  color: #009d92;
+}
+.inputStyDiv {
+  position: relative;
+}
+
+.iconSty {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+}
