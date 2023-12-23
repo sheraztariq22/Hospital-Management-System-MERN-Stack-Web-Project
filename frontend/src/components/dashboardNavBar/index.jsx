@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./style.css";
 const DashboardNavBar = ({ tabs, actionTab, onTabChange }) => {
   const handleClick = (index) => {
     onTabChange(index);

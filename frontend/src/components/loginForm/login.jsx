@@ -12,7 +12,7 @@ const initialValues = {
   password: "",
 };
 function LoginComponent() {
-  const user = { eamil: "shakir@gmail.com", password: "12345678" };
+  const user = { eamil: "sheraz@gmail.com", password: "12345678" };
   const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
