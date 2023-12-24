@@ -1,16 +1,5 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const jsonwebtoken = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
-
-app.use(bodyParser.json());
-app.use(cors());
-
-
+// authentication.js
+const jwt = require('jsonwebtoken');
 
 const AdminAuth = async (req, res, next) => {
     const token = req.headers['authorization'];
@@ -32,4 +21,4 @@ const AdminAuth = async (req, res, next) => {
     }
 };
 
-exports.AdminAuth = AdminAuth;
+module.exports = AdminAuth;

@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const jwt = require('jsonwebtoken');
 
 const adminCredentials = {
@@ -7,26 +5,19 @@ const adminCredentials = {
     password: '12345678'
 };
 
-const Login = async (req, res) => {
+const login = async (req, res) => {
     const { username, password } = req.body;
     if (username === adminCredentials.username && password === adminCredentials.password) {
-        const token = jwt.sign({
-            username: adminCredentials.username,
-            password: adminCredentials.password
-        }, 'secret');
+        const token = jwt.sign({ username }, 'secret', { expiresIn: '1h' });
         res.json({
+            message: 'Login successful',
             token
         });
     } else {
-        res.json({
-            message: 'Invalid credentials'
+        res.status(401).json({
+            message: 'Username or password incorrect'
         });
     }
 };
 
-
-//exporting the module
-module.exports = {
-    Login
-};
-
+module.exports = { login };
