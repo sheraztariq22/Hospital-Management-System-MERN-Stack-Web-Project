@@ -2,7 +2,6 @@ const { StaffMember } = require("../models/staffMember.models");
 
 const addStaff = async (req, res) => {
   try {
-    console.log(req.body);
     const { firstName, lastName, role, email, password } = req.body;
 
     if (!firstName || !lastName || !role || !email || !password) {
@@ -19,8 +18,6 @@ const addStaff = async (req, res) => {
     await newStaff.save();
 
     res.status(201).json(newStaff);
-
-    console.log("Staff added successfully", newStaff);
   } catch (error) {
     console.error("Error adding staff:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -72,4 +69,25 @@ const ListofStaff = async (req, res) => {
   }
 };
 
-module.exports = { addStaff, updateStaff, ListofStaff };
+//function to delete a staff member
+const deleteStaff = async (req, res) => {
+  try {
+    const staffId = req.params.id;
+    console.log("Deleting staff with ID:", staffId);
+
+    const staff = await StaffMember.findByIdAndDelete(staffId);
+
+    if (!staff) {
+      console.log("Staff not found for deletion:", staffId);
+      return res.status(404).json({ message: "Staff not found" });
+    }
+
+    console.log("Staff deleted successfully:", staffId);
+    res.status(200).json({ message: "Staff deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting staff:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = { addStaff, updateStaff, ListofStaff, deleteStaff };

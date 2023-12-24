@@ -30,7 +30,6 @@ const staffMemberSchema = new mongoose.Schema(
     },
     confirmPassword: {
       type: String,
-      required: true,
       minlength: 8,
     },
   },
