@@ -1,21 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 const adminCredentials = {
-    username: 'admin',
+    email: 'admin@example.com',
     password: '12345678'
 };
 
 const login = async (req, res) => {
-    const { username, password } = req.body;
-    if (username === adminCredentials.username && password === adminCredentials.password) {
-        const token = jwt.sign({ username }, 'secret', { expiresIn: '1h' });
+    const { email, password } = req.body;
+    if (email === adminCredentials.email && password === adminCredentials.password) {
+        const token = jwt.sign({ email }, 'secret', { expiresIn: '1h' });
         res.json({
             message: 'Login successful',
             token
         });
     } else {
         res.status(401).json({
-            message: 'Username or password incorrect'
+            message: 'email or password incorrect'
         });
     }
 };
