@@ -11,7 +11,7 @@ const CreateUserForm = () => {
           type="text"
           name="firstname"
           id="1"
-          placeholder="use name (required)"
+          placeholder="First Name"
           iconUrl={<LuUser2 />}
         />
         <FormInputs

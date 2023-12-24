@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const adminloginRoutes = require("./routes/adminlogin.routes");
 const mongoose = require("mongoose");
 const StaffRoutes = require("./routes/staffManagement.routes");
+const PatientRoutes = require("./routes/patientManagement.routes");
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ mongoose
 // Routes
 app.use("/api/v1/admin", adminloginRoutes);
 app.use("/api/v1/admin/staff", StaffRoutes);
+app.use("/api/v1/admin/patient", PatientRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

@@ -22,13 +22,19 @@ function LoginComponent() {
       },
       onSubmit: async (values) => {
         try {
-          const response = await fetch("http://localhost:3000/api/v1/admin/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
-          });
+          const response = await fetch(
+            "http://localhost:3000/api/v1/admin/login",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values),
+            }
+          );
+
+          //store the token in local storage
+          localStorage.setItem("token", response.token);
 
           if (response.ok) {
             const data = await response.json();
@@ -47,81 +53,80 @@ function LoginComponent() {
       },
     });
 
-    return (
-          <form action="#" className="login-div" onSubmit={handleSubmit}>
-            <div className="title-login">
-              <p>Login</p>
-            </div>
-            <div>
-              <div className="inputStyDiv">
-                <InputComponent
-                  type="text"
-                  inputId="inputOne"
-                  placeholder="email address"
-                  name="email"
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.email}
-                  icon={<HiOutlineMail />}
-                  iconStyle="iconSty"
-                />
-                <p
-                  style={{
-                    textAlign: "start",
-                    padding: "0px 0px  0px 20px ",
-                    color: "red",
-                    fontSize: "12px",
-                  }}
-                >
-                  {errors.email && touched.email ? errors.email : null}
-                </p>
-              </div>
-              <div className="inputStyDiv">
-                <InputComponent
-                  icon={<HiOutlineLockClosed />}
-                  type="password"
-                  value={values.password}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  name="password"
-                  inputId="inputTwo"
-                  placeholder="password"
-                  iconStyle="iconSty"
-                />
-                <p
-                  style={{
-                    textAlign: "start",
-                    padding: "0px 0px  0px 20px ",
-                    color: "red",
-                    fontSize: "12px",
-                  }}
-                >
-                  {errors.password && touched.password ? errors.password : null}
-                </p>
-              </div>
-              <div className="forgotPass">
-                <div className="checkboxStyle">
-                  <input type="checkbox" id="check" />
-                  <label htmlFor="check">Remember Me</label>
-                </div>
-                <div className="recoverPass">
-                  <p>Forget Password?</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button
-                type="submit"
-                value="LogIn"
-                className="btn-style"
-                style={{ cursor: "pointer" }}
-              >
-                Login
-              </button>
-            </div>
-          </form>
-        );
+  return (
+    <form action="#" className="login-div" onSubmit={handleSubmit}>
+      <div className="title-login">
+        <p>Login</p>
+      </div>
+      <div>
+        <div className="inputStyDiv">
+          <InputComponent
+            type="text"
+            inputId="inputOne"
+            placeholder="email address"
+            name="email"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={values.email}
+            icon={<HiOutlineMail />}
+            iconStyle="iconSty"
+          />
+          <p
+            style={{
+              textAlign: "start",
+              padding: "0px 0px  0px 20px ",
+              color: "red",
+              fontSize: "12px",
+            }}
+          >
+            {errors.email && touched.email ? errors.email : null}
+          </p>
+        </div>
+        <div className="inputStyDiv">
+          <InputComponent
+            icon={<HiOutlineLockClosed />}
+            type="password"
+            value={values.password}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            name="password"
+            inputId="inputTwo"
+            placeholder="password"
+            iconStyle="iconSty"
+          />
+          <p
+            style={{
+              textAlign: "start",
+              padding: "0px 0px  0px 20px ",
+              color: "red",
+              fontSize: "12px",
+            }}
+          >
+            {errors.password && touched.password ? errors.password : null}
+          </p>
+        </div>
+        <div className="forgotPass">
+          <div className="checkboxStyle">
+            <input type="checkbox" id="check" />
+            <label htmlFor="check">Remember Me</label>
+          </div>
+          <div className="recoverPass">
+            <p>Forget Password?</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          type="submit"
+          value="LogIn"
+          className="btn-style"
+          style={{ cursor: "pointer" }}
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  );
 }
 
 export default LoginComponent;
-

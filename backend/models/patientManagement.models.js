@@ -1,49 +1,46 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const patientManagementSchema = new mongoose.Schema({
-        patientName: {
-            type: String,
-            required: true,
-            trim: true
-        },
+const patientManagementSchema = new mongoose.Schema(
+  {
+    patientName: {
+      type: String,
+      required: true,
+    },
 
-        patientContact: {
-            type: String,
-            required: true,
-            trim: true
-        },
+    patientContact: {
+      type: String,
+      required: true,
+    },
 
-        pateintAttendentName: {
-            type: String,
-            required: true,
-            trim: true
-        },
+    pateintAttendentName: {
+      type: String,
+      required: true,
+    },
 
-        patientRoomNumber: {
-            type: String,
-            trim: true
-        },
+    patientRoomNumber: {
+      type: Number,
+    },
 
-        patientAppointmentUrl: {
-            type: String,
-            trim: true
-        },
+    patientAppointmentUrl: {
+      type: String,
+    },
 
-        pateintMedicalFormUrl: {
-            type: String,
-            trim: true
-        },
+    pateintMedicalFormUrl: {
+      type: String,
+    },
 
-        pateintReportUrl: {
-            type: String,
-            trim: true
-        }
+    pateintReportUrl: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-    }, {
-        timestamps: true
-    });
-
-
-const PatientManagement = mongoose.model('PatientManagement', patientManagementSchema);
+const PatientManagement = mongoose.model(
+  "PatientManagement",
+  patientManagementSchema
+);
 
 module.exports = PatientManagement;
