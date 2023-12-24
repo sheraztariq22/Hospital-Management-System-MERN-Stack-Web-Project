@@ -1,51 +1,39 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const staffMemberSchema = new mongoose.Schema({
+const staffMemberSchema = new mongoose.Schema(
+  {
     firstName: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
     },
 
     lastName: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
     },
 
-    username: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
+    role: {
+      type: String,
+      required: true,
     },
 
     email: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
+      type: String,
+      required: true,
+      lowercase: true,
     },
 
     password: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 8
+      type: String,
+      required: true,
+      minlength: 8,
     },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-    passwordConfirm: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 8
-    }
+const StaffMember = mongoose.model("StaffMember", staffMemberSchema);
 
-}, {
-    timestamps: true
-});
-
-
-const StaffMember = mongoose.model('StaffMember', staffMemberSchema);
-
-module.exports = StaffMember;
+module.exports = { StaffMember };

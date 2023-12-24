@@ -40,6 +40,7 @@ const AddPatient = () => {
           placeholder="Patient Attendant Name"
           iconUrl={<FaUser />}
         />
+
         <FormButton button="Add Patient" />
       </form>
     </>

@@ -37,7 +37,14 @@ const CreateUserForm = () => {
           iconAlt="user password"
           max="16"
         />
-        <FormButton button="Add New User" />
+        <FormInputs
+          type="text"
+          name="role"
+          id="5"
+          placeholder="Role"
+          iconUrl={<LuUser2 />}
+        />
+        <FormButton button="Add New Staff" />
       </form>
     </>
   );

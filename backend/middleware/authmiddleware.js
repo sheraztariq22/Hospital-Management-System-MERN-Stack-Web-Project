@@ -1,24 +1,23 @@
-// authentication.js
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const AdminAuth = async (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (token) {
-        jwt.verify(token, 'secret', (err, decoded) => {
-            if (err) {
-                return res.json({
-                    message: 'Invalid token'
-                });
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        res.json({
-            message: 'Token not found'
-        });
-    }
-};
+function authenticateUser(req, res, next) {
+  const token = req.header("authorization");
 
-module.exports = AdminAuth;
+  if (typeof token !== "undefined") {
+    const bearer = token.split(" ");
+    const bearerToken = bearer[1];
+
+    jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
+      if (err) {
+        res.status(401).json({ message: "Invalid token" });
+      } else {
+        req.user = authData;
+        next();
+      }
+    });
+  } else {
+    res.status(401).json({ message: "Token not provided" });
+  }
+}
+
+module.exports = authenticateUser;
