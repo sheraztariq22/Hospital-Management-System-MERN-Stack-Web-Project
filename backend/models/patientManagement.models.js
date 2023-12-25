@@ -12,7 +12,7 @@ const patientManagementSchema = new mongoose.Schema(
       required: true,
     },
 
-    pateintAttendentName: {
+    patientAttendentName: {
       type: String,
       required: true,
     },

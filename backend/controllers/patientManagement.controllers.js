@@ -1,4 +1,4 @@
-const { PatientManagement } = require("../models/patientManagement.models");
+const PatientManagement = require("../models/patientManagement.models");
 
 //function to add a patient
 const addPatient = async (req, res) => {
