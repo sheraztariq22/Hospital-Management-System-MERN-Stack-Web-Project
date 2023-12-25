@@ -25,11 +25,11 @@ const patientManagementSchema = new mongoose.Schema(
       type: String,
     },
 
-    pateintMedicalFormUrl: {
+    patientMedicalFormUrl: {
       type: String,
     },
 
-    pateintReportUrl: {
+    patientReportUrl: {
       type: String,
     },
   },
