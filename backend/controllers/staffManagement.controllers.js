@@ -4,6 +4,8 @@ const addStaff = async (req, res) => {
   try {
     const { firstName, lastName, role, email, password } = req.body;
 
+    console.log(req.body);
+
     if (!firstName || !lastName || !role || !email || !password) {
       return res.status(400).json({ message: "All fields are required bro." });
     }

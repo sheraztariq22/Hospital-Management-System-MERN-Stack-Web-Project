@@ -14,7 +14,12 @@ const app = express();
 
 // Middlewares
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 
 // Connect to database
