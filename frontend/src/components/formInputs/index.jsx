@@ -1,6 +1,15 @@
 import React from "react";
 
-const FormInputs = ({ type, value, id, name, placeholder, max, iconUrl }) => {
+const FormInputs = ({
+  type,
+  value,
+  id,
+  name,
+  placeholder,
+  max,
+  iconUrl,
+  ...rest
+}) => {
   return (
     <div style={{ position: "relative" }}>
       <input
@@ -19,6 +28,7 @@ const FormInputs = ({ type, value, id, name, placeholder, max, iconUrl }) => {
         id={id}
         placeholder={placeholder}
         maxLength={max}
+        {...rest}
       />
 
       <div

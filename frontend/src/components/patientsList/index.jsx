@@ -1,15 +1,3 @@
-// import React from "react";
-
-// const PatientList = () => {
-//   return (
-//     <div>
-//       <h1>This is patient list component </h1>
-//     </div>
-//   );
-// };
-
-// export default PatientList;
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -20,13 +8,14 @@ const PatientList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/admin/staff/ListofStaff",
+          "http://localhost:3000/api/v1/admin/patient/getAllPatients",
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzAzNDM4Mjk3LCJleHAiOjE3MDQzMDIyOTd9.7RqyqIHKDYXTO8ylCh6OQrSJOEyiB1lFFLlkwzKy_OA`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
+        console.log(response.data);
         setPatientData(response.data);
       } catch (error) {
         console.error("Error fetching patient data:", error);
@@ -34,17 +23,57 @@ const PatientList = () => {
     };
 
     fetchData();
-  }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
+  }, []);
 
   return (
     <div>
       <h1>This is patient list component</h1>
-      <ul>
-        {patientData.map((patient) => (
-          <li key={patient.id}>{patient.name}</li>
-          // Replace "id" and "name" with the actual properties returned by your API
-        ))}
-      </ul>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          marginTop: "20px",
+          maxHeight: "300px",
+          overflowY: "auto",
+          border: "1px solid #ddd",
+        }}
+      >
+        <thead>
+          <tr>
+            <th
+              style={{
+                padding: "10px",
+                border: "1px solid #ddd",
+              }}
+            >
+              Name
+            </th>
+            <th
+              style={{
+                padding: "10px",
+                border: "1px solid #ddd",
+              }}
+            >
+              Contact
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {patientData.map((patient) => (
+            <tr key={patient.id}>
+              <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                {patient.patientName}
+              </td>
+              <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                {patient.patientContact}
+              </td>
+              <td style={{ padding: "10px", border: "1px solid #ddd" }}>
+                {patient.patientAttendentName}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

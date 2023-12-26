@@ -1,48 +1,3 @@
-// import React from "react";
-// import avatart from "../../assets/Ellipse 1094.png";
-
-// const TableList = () => {
-//   const data = [
-//     { id: 1, name: "Shakir", role: "room incharge" },
-//     // Add more data as needed
-//   ];
-
-//   const headers = ["Profile", "Name", "Role", "Details", "Action"];
-
-//   return (
-//     <>
-//       <table style={{ width: "100%", textAlign: "left" }}>
-//         <thead>
-//           <tr>
-//             {headers.map((header) => (
-//               <th key={header}>{header}</th>
-//             ))}
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {data.map((row) => (
-//             <tr key={row.id}>
-//               <td>
-//                 <img src={avatart} alt="Profile" />
-//               </td>
-//               <td>{row.name}</td>
-//               <td>{row.role}</td>
-//               <td>
-//                 <button>checkfordetails</button>
-//               </td>
-//               <td>
-//                 <button>delete</button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </>
-//   );
-// };
-
-// export default TableList;
-
 import React, { useState, useEffect } from "react";
 import avatart from "../../assets/Ellipse 1094.png";
 
@@ -78,43 +33,97 @@ const TableList = () => {
   const headers = ["Profile", "Name", "Role", "Details", "Action"];
 
   return (
-    <>
-      <table style={{ width: "100%", textAlign: "left" }}>
-        <thead>
-          <tr>
-            {headers.map((header) => (
-              <th key={header}>{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(staffMembers) && staffMembers.length > 0 ? (
-            staffMembers.map((row) => (
-              <tr key={row._id}>
-                <td>
-                  <img src={avatart} alt="Profile" />
-                </td>
-                <td>
-                  {row.firstName} {row.lastName}
-                </td>
-                <td>{row.role}</td>
-                <td>
-                  <button>check for details</button>
-                </td>
-                <td>
-                  <button>delete</button>
+    <div style={containerStyle}>
+      <h1>Staff Members List</h1>
+      <div style={tableContainerStyle}>
+        <table style={tableStyle}>
+          <thead>
+            <tr>
+              {headers.map((header) => (
+                <th key={header} style={tableHeaderStyle}>
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(staffMembers) && staffMembers.length > 0 ? (
+              staffMembers.map((row) => (
+                <tr key={row._id}>
+                  <td style={tableCellStyle}>
+                    <img src={avatart} alt="Profile" style={avatarStyle} />
+                  </td>
+                  <td style={tableCellStyle}>
+                    {row.firstName} {row.lastName}
+                  </td>
+                  <td style={tableCellStyle}>{row.role}</td>
+                  <td style={tableCellStyle}>
+                    <button style={buttonStyle}>Check Details</button>
+                  </td>
+                  <td style={tableCellStyle}>
+                    <button style={buttonStyle}>Delete</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={headers.length} style={noDataCellStyle}>
+                  No staff members found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={headers.length}>No staff members found</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
+};
+
+const containerStyle = {
+  maxWidth: "100%",
+  overflowX: "auto",
+};
+
+const tableContainerStyle = {
+  maxHeight: "280px", // Set your desired max height
+  overflowY: "auto",
+};
+
+const tableStyle = {
+  width: "100%",
+  textAlign: "left",
+};
+
+const tableHeaderStyle = {
+  padding: "10px",
+  border: "1px solid #ddd",
+};
+
+const tableCellStyle = {
+  padding: "10px",
+  border: "1px solid #ddd",
+};
+
+const avatarStyle = {
+  width: "50px", // Adjust as needed
+  height: "50px", // Adjust as needed
+  borderRadius: "50%",
+};
+
+const buttonStyle = {
+  padding: "8px 12px",
+  backgroundColor: "#4CAF50",
+  color: "#fff",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
+};
+
+const noDataCellStyle = {
+  padding: "10px",
+  textAlign: "center",
+  fontStyle: "italic",
+  color: "#888",
 };
 
 export default TableList;

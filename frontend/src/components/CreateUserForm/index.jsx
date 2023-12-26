@@ -9,14 +9,17 @@ import FormButton from "../formButton";
 
 const CreateUserForm = () => {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     role: "",
   });
 
+  console.log(formData);
+
   const handleChange = (e) => {
+    console.log(e.target.value);
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -29,28 +32,23 @@ const CreateUserForm = () => {
 
     console.log("Form data:", formData);
     try {
+      console.log(JSON.stringify(formData));
       const response = await fetch(
         "http://localhost:3000/api/v1/admin/staff/addStaff",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzAzNDM4Mjk3LCJleHAiOjE3MDQzMDIyOTd9.7RqyqIHKDYXTO8ylCh6OQrSJOEyiB1lFFLlkwzKy_OA`, // Replace with a valid access token
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzAzNTc3MTY1LCJleHAiOjE3MDQ0NDExNjV9.CUu-eVHIZy_SX-rRj2roAHu-uL3y6cbeAD1mrCPQHPM`,
           },
           credentials: "include",
-          body: JSON.stringify({
-            firstName: formData.firstname,
-            lastName: formData.lastname,
-            email: formData.email,
-            password: formData.password,
-            role: formData.role,
-          }),
+          body: JSON.stringify(formData),
         }
       );
 
       if (response.ok) {
-        console.log("Staff added successfully!");
-        // Reset the form or redirect to another page if needed
+        alert("Staff added successfully!");
+        setFormData({});
       } else {
         const errorData = await response.json();
         console.error("Failed to add staff:", errorData);
@@ -65,7 +63,7 @@ const CreateUserForm = () => {
       <form onSubmit={handleSubmit}>
         <FormInputs
           type="text"
-          name="firstname"
+          name="firstName"
           id="1"
           placeholder="First Name"
           iconUrl={<LuUser2 />}
@@ -73,7 +71,7 @@ const CreateUserForm = () => {
         />
         <FormInputs
           type="text"
-          name="lastname"
+          name="lastName"
           id="2"
           placeholder="Last Name"
           iconUrl={<LuUser2 />}

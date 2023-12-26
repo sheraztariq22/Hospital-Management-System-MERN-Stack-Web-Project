@@ -33,11 +33,9 @@ function LoginComponent() {
             }
           );
 
-          //store the token in local storage
-          localStorage.setItem("token", response.token);
-
           if (response.ok) {
             const data = await response.json();
+            localStorage.setItem("token", data.token);
             console.log("Token:", data.token);
 
             // Redirect to the dashboard
