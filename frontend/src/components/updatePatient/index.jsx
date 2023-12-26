@@ -5,8 +5,31 @@ import { FaAddressCard } from "react-icons/fa6";
 import { MdMeetingRoom } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import FormButton from "../formButton/index";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const UpdatePatient = () => {
+  const [patientData, setPatientData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/admin/patient/getAllPatients",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setPatientData(response.data);
+      } catch (error) {
+        console.error("Error fetching patient data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <form>

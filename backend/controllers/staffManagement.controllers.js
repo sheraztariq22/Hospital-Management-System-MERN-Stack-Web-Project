@@ -29,33 +29,36 @@ const addStaff = async (req, res) => {
 //the update info function for staff
 const updateStaff = async (req, res) => {
   try {
-    const { firstName, lastName, role, email, password, confirmPassword } =
+    const { _id, firstName, lastName, role, email, password, confirmPassword } =
       req.body;
 
-    if (
-      !firstName ||
-      !lastName ||
-      !role ||
-      !email ||
-      !password ||
-      !confirmPassword
-    ) {
-      return res.status(400).json({ message: "All fields are required bro." });
+    if (!_id) {
+      return res.status(400).json({ message: "Staff ID is required." });
     }
 
-    const newStaff = new StaffMember({
-      firstName,
-      lastName,
-      role,
-      email,
-      password,
-      confirmPassword,
-    });
-    await newStaff.save();
+    // Update staff information using the MongoDB _id
+    const updatedStaff = await StaffMember.findByIdAndUpdate(
+      _id,
+      {
+        $set: {
+          firstName,
+          lastName,
+          role,
+          email,
+          password,
+          confirmPassword,
+        },
+      },
+      { new: true } // To return the updated document
+    );
 
-    res.status(201).json(newStaff);
+    if (!updatedStaff) {
+      return res.status(404).json({ message: "Staff member not found." });
+    }
+
+    res.status(200).json(updatedStaff);
   } catch (error) {
-    console.error("Error adding staff:", error);
+    console.error("Error updating staff:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };

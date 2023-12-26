@@ -4,51 +4,93 @@ import { LuUser2 } from "react-icons/lu";
 import { CiLock } from "react-icons/ci";
 import { FaUserEdit } from "react-icons/fa";
 import FormButton from "../formButton/index";
+import { useState } from "react";
+import axios from "axios";
+
 const UpdateUserForm = () => {
+  const [formData, setFormData] = useState({
+    _id: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/v1/admin/staff/updateStaff/${formData._id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInputs
           type="text"
-          id="1"
-          name="username"
+          name="_id"
+          value={formData._id}
+          onChange={handleChange}
           iconUrl={<FaUserEdit />}
-          placeholder="user name (to be update)"
+          placeholder="User ID (to be updated)"
         />
         <FormInputs
           type="email"
-          id="2"
           name="email"
+          value={formData.email}
+          onChange={handleChange}
           iconUrl={<MdOutlineMail />}
-          placeholder="email (to be update)"
+          placeholder="Email (to be updated)"
         />
         <FormInputs
           type="text"
-          name="first name"
-          id="3"
-          placeholder="first Name (to be update)"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
           iconUrl={<LuUser2 />}
+          placeholder="First Name (to be updated)"
         />
         <FormInputs
           type="text"
-          name="last name"
-          id="4"
-          placeholder="last Name (to be update)"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
           iconUrl={<LuUser2 />}
+          placeholder="Last Name (to be updated)"
         />
         <FormInputs
           type="password"
-          name="New password"
-          id="5"
-          placeholder="New password (to be update)"
+          name="newPassword"
+          value={formData.newPassword}
+          onChange={handleChange}
           iconUrl={<CiLock />}
+          placeholder="New Password (to be updated)"
         />
         <FormInputs
           type="password"
-          name="Confirm password"
-          id="6"
-          placeholder="Confirm password (to be update)"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
           iconUrl={<CiLock />}
+          placeholder="Confirm Password (to be updated)"
         />
         <FormButton button="Update" />
       </form>

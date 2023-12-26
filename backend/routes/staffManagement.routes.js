@@ -9,7 +9,7 @@ const {
 } = require("../controllers/staffManagement.controllers");
 
 router.post("/addStaff", AdminAuth, addStaff);
-router.put("/updateStaff", AdminAuth, updateStaff);
+router.put("/updateStaff/:id", AdminAuth, updateStaff);
 router.get("/ListofStaff", AdminAuth, ListofStaff);
 router.delete("/deleteStaff/:id", AdminAuth, deleteStaff);
 
