@@ -85,7 +85,7 @@ const containerStyle = {
 };
 
 const tableContainerStyle = {
-  maxHeight: "280px", // Set your desired max height
+  maxHeight: "280px",
   overflowY: "auto",
 };
 
@@ -105,8 +105,8 @@ const tableCellStyle = {
 };
 
 const avatarStyle = {
-  width: "50px", // Adjust as needed
-  height: "50px", // Adjust as needed
+  width: "50px",
+  height: "50px",
   borderRadius: "50%",
 };
 
