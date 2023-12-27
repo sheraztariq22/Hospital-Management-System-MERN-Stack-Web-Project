@@ -13,23 +13,22 @@ export const tabs = [
 export const titlesAndDescriptions = [
   {
     id: 1,
-    title: "Add New User",
+    title: "Add New Staff",
     description: "Create a brand new user and add them to this site.",
   },
   {
     id: 2,
-    title: "Update User",
+    title: "Update Staff info",
     description: "Here you can Update the data.",
   },
   {
     id: 3,
-    title: "Delete User",
-    description: "Here you can Delete the data.",
+    title: "Staff's List",
+    description: "Here you can see the list and delete the data.",
   },
   {
     id: 4,
-    title: "Search User",
+    title: "Search Staff",
     description: "Here you can Search the data.",
   },
-  // Add more title-description pairs as needed
 ];

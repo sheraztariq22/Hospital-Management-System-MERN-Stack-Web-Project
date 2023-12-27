@@ -94,4 +94,34 @@ const deleteStaff = async (req, res) => {
   }
 };
 
-module.exports = { addStaff, updateStaff, ListofStaff, deleteStaff };
+//function to search a staff member by name, role or email
+const searchStaff = async (req, res) => {
+  try {
+    const { firstName, role, email } = req.body;
+
+    if (!firstName && !role && !email) {
+      return res.status(400).json({ message: "Please enter a search term." });
+    }
+
+    const staff = await StaffMember.find({
+      $or: [{ firstName }, { role }, { email }],
+    });
+
+    if (!staff) {
+      return res.status(404).json({ message: "Staff not found." });
+    }
+
+    res.status(200).json(staff);
+  } catch (error) {
+    console.error("Error searching staff:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = {
+  addStaff,
+  updateStaff,
+  ListofStaff,
+  deleteStaff,
+  searchStaff,
+};
