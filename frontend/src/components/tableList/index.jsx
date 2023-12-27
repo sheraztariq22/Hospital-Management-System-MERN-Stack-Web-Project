@@ -4,33 +4,57 @@ import avatart from "../../assets/Ellipse 1094.png";
 const TableList = () => {
   const [staffMembers, setStaffMembers] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/v1/admin/staff/ListofStaff",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Token:", data);
-          setStaffMembers(data);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/v1/admin/staff/ListofStaff",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
         }
-      } catch (error) {
-        console.error("Error:", error.message);
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Token:", data);
+        setStaffMembers(data);
       }
-    };
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const headers = ["Profile", "Name", "Role", "Details", "Action"];
+  const handleDelete = async (staffId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/admin/staff/deleteStaff/${staffId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+
+      if (response.ok) {
+        console.log("Staff deleted successfully");
+        fetchData();
+      } else {
+        console.error("Failed to delete staff");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  const headers = ["Profile", "Name", "Role", "Action"];
 
   return (
     <div style={containerStyle}>
@@ -58,10 +82,12 @@ const TableList = () => {
                   </td>
                   <td style={tableCellStyle}>{row.role}</td>
                   <td style={tableCellStyle}>
-                    <button style={buttonStyle}>Check Details</button>
-                  </td>
-                  <td style={tableCellStyle}>
-                    <button style={buttonStyle}>Delete</button>
+                    <button
+                      style={buttonStyle}
+                      onClick={() => handleDelete(row._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))
