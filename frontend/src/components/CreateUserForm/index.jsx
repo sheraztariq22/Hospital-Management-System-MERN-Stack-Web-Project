@@ -5,8 +5,6 @@ import { CiLock } from "react-icons/ci";
 import { LuUser2 } from "react-icons/lu";
 import FormButton from "../formButton";
 
-// ... (imports)
-
 const CreateUserForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -39,7 +37,7 @@ const CreateUserForm = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzAzNTc3MTY1LCJleHAiOjE3MDQ0NDExNjV9.CUu-eVHIZy_SX-rRj2roAHu-uL3y6cbeAD1mrCPQHPM`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           credentials: "include",
           body: JSON.stringify(formData),

@@ -6,6 +6,24 @@ const DashboardMenuTitle = ({ titlesAndDescriptions, actionTab }) => {
     (item) => item.id === actionTab
   );
 
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.replace("/");
+  };
+
+  const dropdownStyle = {
+    position: "relative",
+    display: "flex",
+  };
+
+  const logoutLinkStyle = {
+    color: "#fff",
+    textDecoration: "none",
+    display: "block",
+    padding: "8px 0",
+    marginRight: "8px",
+  };
+
   return (
     <div
       style={{
@@ -31,7 +49,10 @@ const DashboardMenuTitle = ({ titlesAndDescriptions, actionTab }) => {
           </>
         )}
       </div>
-      <div style={{ alignSelf: "end" }}>
+      <div style={dropdownStyle}>
+        <a href="#" style={logoutLinkStyle} onClick={handleLogout}>
+          Logout
+        </a>
         <img src={adimAvatar} alt="adimAvatar" />
       </div>
     </div>

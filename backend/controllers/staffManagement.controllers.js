@@ -36,7 +36,6 @@ const updateStaff = async (req, res) => {
       return res.status(400).json({ message: "Staff ID is required." });
     }
 
-    // Update staff information using the MongoDB _id
     const updatedStaff = await StaffMember.findByIdAndUpdate(
       _id,
       {
@@ -49,7 +48,7 @@ const updateStaff = async (req, res) => {
           confirmPassword,
         },
       },
-      { new: true } // To return the updated document
+      { new: true }
     );
 
     if (!updatedStaff) {

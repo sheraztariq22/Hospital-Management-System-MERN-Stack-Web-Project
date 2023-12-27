@@ -1,44 +1,92 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import FormInputs from "../formInputs";
-import { FaAddressCard } from "react-icons/fa6";
 import { MdMeetingRoom } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import FormButton from "../formButton/index";
+import { useState } from "react";
 
 const AddPatient = () => {
+  const [patient, setPatient] = useState({
+    patientName: "",
+    patientContact: "",
+    patientAttendentName: "",
+    patientRoomNumber: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    const { name, value } = e.target;
+    setPatient((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form data:", patient);
+    try {
+      console.log(JSON.stringify(patient));
+      const response = await fetch(
+        "http://localhost:3000/api/v1/admin/patient/addPatient",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          credentials: "include",
+          body: JSON.stringify(patient),
+        }
+      );
+
+      if (response.ok) {
+        alert("Patient added successfully!");
+        setPatient({});
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to add patient:", errorData);
+      }
+    } catch (error) {
+      console.error("Error adding patient:", error);
+    }
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInputs
           type="text"
           id="1"
+          name="patientName"
           placeholder="Patient Name"
           iconUrl={<FaUser />}
-        />
-        <FormInputs
-          type="number"
-          id="2"
-          placeholder="Patient ID"
-          iconUrl={<FaAddressCard />}
+          onChange={handleChange}
         />
         <FormInputs
           type="number"
           id="3"
+          name="patientRoomNumber"
           placeholder="Patient Room Number"
           iconUrl={<MdMeetingRoom />}
+          onChange={handleChange}
         />
         <FormInputs
           type="number"
           id="4"
-          placeholder="Patient Room Number"
+          name="patientContact"
+          placeholder="Patient Contact Number"
           iconUrl={<FaPhoneAlt />}
+          onChange={handleChange}
         />
         <FormInputs
           type="text"
           id="5"
+          name="patientAttendentName"
           placeholder="Patient Attendant Name"
           iconUrl={<FaUser />}
+          onChange={handleChange}
         />
 
         <FormButton button="Add Patient" />
