@@ -55,6 +55,7 @@ const PatientLink = () => {
     <form onSubmit={handleSubmit}>
       <FormInputs
         type="text"
+        name="patientAppointmentUrl"
         id="1"
         placeholder="Patient Appointment Url"
         iconUrl={<IoLink />}
@@ -65,6 +66,7 @@ const PatientLink = () => {
         id="2"
         placeholder="Patient Medical form Url"
         iconUrl={<IoLink />}
+        name={"patientMedicalFormUrl"}
         onChange={handleChange}
       />
       <FormInputs
@@ -72,12 +74,14 @@ const PatientLink = () => {
         id="3"
         placeholder="Patient Reports Url"
         iconUrl={<IoLink />}
+        name={"patientReportUrl"}
         onChange={handleChange}
       />
       <FormInputs
         type="text"
         id="4"
         placeholder="Patient ID"
+        name="patientId"
         onChange={handleChange}
       />
 
