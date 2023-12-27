@@ -122,9 +122,31 @@ const updatePatient = async (req, res) => {
   }
 };
 
+//function to delete patient
+const deletePatient = async (req, res) => {
+  const { patientId } = req.params;
+  try {
+    if (!patientId) {
+      return res.status(400).json({ message: "Patient Id is required bro." });
+    }
+
+    const deletedPatient = await PatientManagement.findByIdAndDelete(patientId);
+
+    if (!deletedPatient) {
+      return res.status(404).json({ message: "Patient not found" });
+    }
+
+    res.status(200).json({ message: "Patient deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting patient:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   addPatient,
   sendPatientLinks,
   getAllPatients,
   updatePatient,
+  deletePatient,
 };

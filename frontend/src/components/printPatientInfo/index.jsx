@@ -1,46 +1,59 @@
 import React from "react";
-import { FaUser } from "react-icons/fa";
 import FormInputs from "../formInputs";
 import { FaAddressCard } from "react-icons/fa6";
-import { MdMeetingRoom } from "react-icons/md";
-import { FaPhoneAlt } from "react-icons/fa";
 import FormButton from "../formButton/index";
+import axios from "axios";
+import { useState } from "react";
 
 const PrintPatientInfo = () => {
+  const [patientData, setPatientData] = useState({
+    id: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPatientData((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
+
+  //handle sumit to delete patient by id
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(patientData);
+    axios
+      .delete(
+        `http://localhost:3000/api/v1/admin/patient/deletePatient/${patientData.id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Patient deleted Successfully");
+        setPatientData({});
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Delete Failed");
+      });
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInputs
           type="text"
-          id="1"
-          placeholder="Patient Name "
-          iconUrl={<FaUser />}
-        />
-        <FormInputs
-          type="number"
           id="2"
           placeholder="Patient ID "
           iconUrl={<FaAddressCard />}
+          name="id"
+          onChange={handleChange}
         />
-        <FormInputs
-          type="number"
-          id="3"
-          placeholder="Patient Room Number"
-          iconUrl={<MdMeetingRoom />}
-        />
-        <FormInputs
-          type="number"
-          id="4"
-          placeholder="Patient Room Number"
-          iconUrl={<FaPhoneAlt />}
-        />
-        <FormInputs
-          type="text"
-          id="5"
-          placeholder="Patient Attendant Name"
-          iconUrl={<FaUser />}
-        />
-        <FormButton button="Print Patient Info" />
+        <FormButton button="Delete Patient" />
       </form>
     </>
   );

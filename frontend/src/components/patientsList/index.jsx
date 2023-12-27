@@ -56,6 +56,14 @@ const PatientList = () => {
             >
               Contact
             </th>
+            <th
+              style={{
+                padding: "10px",
+                border: "1px solid #ddd",
+              }}
+            >
+              Attendant Name
+            </th>
           </tr>
         </thead>
         <tbody>

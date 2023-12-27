@@ -11,7 +11,7 @@ export const patientTabs = [
   { id: 2, label: "Patient Links", component: <PatientLink /> },
   { id: 3, label: "List Of Patients", component: <PatientList /> },
   { id: 4, label: "Update Patient", component: <UpdatePatient /> },
-  { id: 5, label: "print Patient Info", component: <PrintPatientInfo /> },
+  { id: 5, label: "Delete Patient", component: <PrintPatientInfo /> },
 ];
 
 // titlesAndDescriptions.js
