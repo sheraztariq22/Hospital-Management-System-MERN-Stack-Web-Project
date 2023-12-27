@@ -1,28 +1,33 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const clinicManagementSchema = new mongoose.Schema({
-    clinicName:{
-        type: String,
-        required: true,
-        trim: true
+const clinicManagementSchema = new mongoose.Schema(
+  {
+    clinicName: {
+      type: String,
+      required: true,
+      trim: true,
     },
 
-    clincPreviousAddress:{
-        type: String,
-        required: true,
-        trim: true
+    clincPreviousAddress: {
+      type: String,
+      required: false,
+      trim: true,
     },
 
-    clinicNewAddress:{
-        type: String,
-        required: true,
-        trim: true
+    clinicNewAddress: {
+      type: String,
+      required: true,
+      trim: true,
     },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-}, {
-    timestamps: true
-});
-
-const ClinicManagement = mongoose.model('ClinicManagement', clinicManagementSchema);
+const ClinicManagement = mongoose.model(
+  "ClinicManagement",
+  clinicManagementSchema
+);
 
 module.exports = ClinicManagement;

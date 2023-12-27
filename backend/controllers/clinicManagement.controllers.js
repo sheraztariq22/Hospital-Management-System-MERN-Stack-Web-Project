@@ -2,17 +2,16 @@ const ClinicManagement = require("../models/clinicManagement.models");
 const mongoose = require("mongoose");
 
 //function to add a new location of clinic: clinicName, clincPreviousAddress,clinicNewAddress
-const addClinicLocation = async (req, res) => {
+const addClinic = async (req, res) => {
   try {
-    const { clinicName, clincPreviousAddress, clinicNewAddress } = req.body;
+    const { clinicName, clinicNewAddress } = req.body;
 
-    if (!clinicName || !clincPreviousAddress || !clinicNewAddress) {
+    if (!clinicName || !clinicNewAddress) {
       return res.status(400).json({ message: "All fields are required bro." });
     }
 
     const newClinic = new ClinicManagement({
       clinicName,
-      clincPreviousAddress,
       clinicNewAddress,
     });
     await newClinic.save();
@@ -100,7 +99,7 @@ const getAllClinics = async (req, res) => {
 };
 
 module.exports = {
-  addClinicLocation,
+  addClinic,
   updateClinicLocation,
   deleteClinicLocation,
   getAllClinics,
