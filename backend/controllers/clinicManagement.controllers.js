@@ -62,15 +62,9 @@ const updateClinicLocation = async (req, res) => {
 //deleting the clinic by name and location
 const deleteClinicLocation = async (req, res) => {
   try {
-    const { clinicName, clincPreviousAddress, clinicNewAddress } = req.body;
     const { clinicId } = req.params;
 
-    if (
-      !clinicId ||
-      !clinicName ||
-      !clincPreviousAddress ||
-      !clinicNewAddress
-    ) {
+    if (!clinicId) {
       return res.status(400).json({ message: "All fields are required bro." });
     }
 
@@ -80,7 +74,7 @@ const deleteClinicLocation = async (req, res) => {
       return res.status(404).json({ message: "Clinic not found" });
     }
 
-    res.status(200).json(deletedClinic);
+    res.status(200).json({ message: "Clinic deleted successfully" });
   } catch (error) {
     console.error("Error deleting clinic:", error);
     res.status(500).json({ message: "Internal Server Error" });

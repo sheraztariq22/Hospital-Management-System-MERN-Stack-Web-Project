@@ -16,7 +16,7 @@ const clinicManagementSchema = new mongoose.Schema(
 
     clinicNewAddress: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
     },
   },
