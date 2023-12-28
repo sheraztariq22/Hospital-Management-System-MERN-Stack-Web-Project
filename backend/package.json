@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
 
-    "build" : "npm i",
-    "start": "node index.js"
+    "build" : "npm run build:project",
+    "start": "node index.js",
+    "build:project": "babel . --out-dir dist --ignore node_modules"
+
   },
   "author": "",
   "license": "ISC",
