@@ -25,12 +25,16 @@ const AddClinicLocation = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/v1/admin/clinic/addClinic", clinic, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .post(
+        "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/clinic/addClinic",
+        clinic,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         alert("Clinic Added Successfully");

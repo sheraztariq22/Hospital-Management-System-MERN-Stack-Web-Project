@@ -29,7 +29,7 @@ const AddPatient = () => {
     try {
       console.log(JSON.stringify(patient));
       const response = await fetch(
-        "http://localhost:3000/api/v1/admin/patient/addPatient",
+        "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/patient/addPatient",
         {
           method: "POST",
           headers: {

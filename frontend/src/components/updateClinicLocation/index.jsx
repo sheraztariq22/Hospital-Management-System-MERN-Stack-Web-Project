@@ -29,7 +29,7 @@ const UpdateClinicLocation = () => {
     console.log(updateClinc);
     axios
       .put(
-        `http://localhost:3000/api/v1/admin/clinic/updateClinicLocation/${updateClinc.id}`,
+        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/clinic/updateClinicLocation/${updateClinc.id}`,
         updateClinc,
         {
           headers: {

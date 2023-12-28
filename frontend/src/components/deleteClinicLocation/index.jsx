@@ -23,7 +23,7 @@ const DeleteClinicLoctaion = () => {
     console.log(deleteClinic);
     axios
       .delete(
-        `http://localhost:3000/api/v1/admin/clinic/deleteClinicLocation/${deleteClinic.id}`,
+        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/clinic/deleteClinicLocation/${deleteClinic.id}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),

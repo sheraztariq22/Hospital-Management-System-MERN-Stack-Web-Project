@@ -31,7 +31,7 @@ const UpdatePatient = () => {
     console.log(patientData);
     axios
       .put(
-        `http://localhost:3000/api/v1/admin/patient/updatePatient/${patientData._id}`,
+        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/patient/updatePatient/${patientData._id}`,
         patientData,
         {
           headers: {
