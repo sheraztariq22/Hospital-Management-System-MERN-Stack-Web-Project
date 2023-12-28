@@ -3,6 +3,7 @@ import FormInputs from "../formInputs";
 import { IoLink } from "react-icons/io5";
 import FormButton from "../formButton/index";
 import { useState } from "react";
+import axios from "axios";
 
 const PatientLink = () => {
   const [link, setLink] = useState({
@@ -25,29 +26,21 @@ const PatientLink = () => {
     e.preventDefault();
     console.log("Form data:", link);
     try {
-      console.log(JSON.stringify(link));
-      const response = await fetch(
-        "http://localhost:3000/api/v1/admin/patient//sendPatientLinks/:patientId",
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/admin/patient/sendPatientLinks/:patientId",
+        link,
         {
-          method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          credentials: "include",
-          body: JSON.stringify(link),
         }
       );
-
-      if (response.ok) {
-        alert("Link send to Patient!");
-        setLink({});
-      } else {
-        const errorData = await response.json();
-        console.error("Failed to add patient:", errorData);
-      }
+      console.log(response);
+      alert("Link Sent Successfully");
+      setLink({});
     } catch (error) {
-      console.error("Error sending link:", error);
+      console.log(error);
+      alert("Link Sending Failed");
     }
   };
 
