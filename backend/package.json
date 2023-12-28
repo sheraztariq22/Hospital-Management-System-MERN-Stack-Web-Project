@@ -4,11 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-
-    "build" : "npm run build:project",
-    "start": "node index.js",
-    "build:project": "babel . --out-dir dist --ignore node_modules"
-
+    "build" : "npm i",
+    "script": "node index.js"
   },
   "author": "",
   "license": "ISC",
