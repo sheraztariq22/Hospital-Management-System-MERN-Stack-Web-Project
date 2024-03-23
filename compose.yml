@@ -1,0 +1,34 @@
+version: "25.0.0"
+services:
+  ngnix:
+    restart: always
+    image: nginx:latest
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:3051"
+    depends_on:
+      - api
+      - frontend
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+
+    volumes:
+      - "/app/node_modules"
+      - ./backend:/app
+    environment:
+      - MONGO_URI=process.env.MONGO_URI
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - "/app/node_modules"
+      - ./frontend:/app
+    command: ["npm", "run", "start"]
+    tty: true
