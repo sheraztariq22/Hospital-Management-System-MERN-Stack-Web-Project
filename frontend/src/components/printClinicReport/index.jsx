@@ -9,7 +9,7 @@ const ClinicReport = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/clinic/getAllClinics",
+          "http://localhost:5000/api/v1/admin/clinic/getAllClinics",
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),

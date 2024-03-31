@@ -27,7 +27,7 @@ const PatientLink = () => {
     console.log("Form data:", link);
     try {
       const response = await axios.post(
-        "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/patient/sendPatientLinks/:patientId",
+        "http://localhost:5000/api/v1/admin/patient/sendPatientLinks/:patientId",
         link,
         {
           headers: {

@@ -23,7 +23,7 @@ function LoginComponent() {
       onSubmit: async (values) => {
         try {
           const response = await fetch(
-            "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/login",
+            "http://localhost:5000/api/v1/admin/login",
             {
               method: "POST",
               headers: {

@@ -7,7 +7,7 @@ const TableList = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/staff/ListofStaff",
+        "http://localhost:5000/api/v1/admin/staff/ListofStaff",
         {
           method: "GET",
           headers: {
@@ -34,7 +34,7 @@ const TableList = () => {
   const handleDelete = async (staffId) => {
     try {
       const response = await fetch(
-        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/staff/deleteStaff/${staffId}`,
+        `http://localhost:5000/api/v1/admin/staff/deleteStaff/${staffId}`,
         {
           method: "DELETE",
           headers: {

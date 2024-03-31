@@ -24,7 +24,7 @@ const PrintPatientInfo = () => {
     console.log(patientData);
     axios
       .delete(
-        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/patient/deletePatient/${patientData.id}`,
+        `http://localhost:5000/api/v1/admin/patient/deletePatient/${patientData.id}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),

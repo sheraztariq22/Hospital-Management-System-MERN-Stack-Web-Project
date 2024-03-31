@@ -29,7 +29,7 @@ const DeleteUserForm = () => {
     console.log(searchUser);
     axios
       .post(
-        "https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/staff/searchStaff",
+        "http://localhost:5000/api/v1/admin/staff/searchStaff",
         searchUser,
         {
           headers: {

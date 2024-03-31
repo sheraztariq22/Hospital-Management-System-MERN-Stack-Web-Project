@@ -1,9 +1,26 @@
-FROM node:alpine
+# Use a specific Node.js version instead of 'latest' to ensure consistency
+FROM node:16-alpine
 
+# Create app directory
 WORKDIR /app
 
-COPY package.json ./
+# Copy package.json and package-lock.json (if it exists)
+COPY package*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm ci
 
+# Copy the rest of the application files
 COPY . .
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Define the port for the container
+EXPOSE 3000
+
+# Build the React app for production
+RUN npm run build
+
+# Start the app
+CMD ["npm", "start"]

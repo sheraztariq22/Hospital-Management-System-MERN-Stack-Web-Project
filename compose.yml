@@ -1,6 +1,6 @@
-version: "25.0.0"
+version: "3.9"
 services:
-  ngnix:
+  nginx:
     restart: always
     image: nginx:latest
     build:
@@ -16,19 +16,22 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./backend
-
-    volumes:
-      - "/app/node_modules"
-      - ./backend:/app
+    env_file:
+      - .env
     environment:
-      - MONGO_URI=process.env.MONGO_URI
+      - NODE_ENV=production
+    ports:
+      - "5000:5000"
 
   frontend:
     build:
       dockerfile: Dockerfile
       context: ./frontend
-    volumes:
-      - "/app/node_modules"
-      - ./frontend:/app
-    command: ["npm", "run", "start"]
-    tty: true
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://api:5000
+    ports:
+      - "3000:3000"
+    command: ["npm", "start"]

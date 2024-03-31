@@ -11,15 +11,16 @@ const ClinicManagementRoutes = require("./routes/clinicManagement.routes");
 dotenv.config();
 
 const app = express();
+const port = 5000;
 
 // Middlewares
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
 // Connect to database
@@ -34,6 +35,6 @@ app.use("/api/v1/admin/staff", StaffRoutes);
 app.use("/api/v1/admin/patient", PatientRoutes);
 app.use("/api/v1/admin/clinic", ClinicManagementRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

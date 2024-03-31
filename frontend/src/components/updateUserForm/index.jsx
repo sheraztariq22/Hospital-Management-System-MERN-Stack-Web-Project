@@ -26,7 +26,7 @@ const UpdateUserForm = () => {
 
     try {
       const response = await axios.put(
-        `https://hospital-management-system-mern-stack-web-project.vercel.app/api/v1/admin/staff/updateStaff/${formData._id}`,
+        `http://localhost:5000/api/v1/admin/staff/updateStaff/${formData._id}`,
         formData,
         {
           headers: {
